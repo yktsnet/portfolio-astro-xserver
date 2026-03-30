@@ -1,66 +1,72 @@
-# ykts.net
+# astro-xserver
 
-A personal portfolio and technical blog built with Astro, deployed on Cloudflare Pages.
+Astro で構築したポートフォリオサイトを、Xserver レンタルサーバー向けに静的出力でホストするリポジトリ。  
+rsync over SSH による1コマンドデプロイで運用しています。
 
-The focus is on documenting *why* systems are designed a certain way, and connecting working backend systems to public-facing surfaces.
+> Cloudflare Pages 版: [yktsnet/portfolio-astro](https://github.com/yktsnet/portfolio-astro)
 
-> 日本語の記事・作品一覧: [ykts.net](https://ykts.net/)
+---
 
-## Selected Works
+## スタック
 
-- **[NFC Attendance System](https://ykts.net/nfc-attendance/)** — Attendance management with Sony RC-S300 + Raspberry Pi 2. Python · GAS · Discord Webhook
-- **[Trading System](https://ykts.net/trading-system/)** — Public monitoring surface for an automated trading system. Cloudflare KV + Astro + SVG charts
-- **[Cat Feed Tracker](https://ykts.net/cat-feed-tracker/)** — Cat feeding log system built around a Pico W. FastAPI · PostgreSQL · LINE Messaging API · NixOS
+| レイヤー | 技術 |
+|---|---|
+| フレームワーク | Astro（静的出力） |
+| スタイリング | Tailwind CSS · Fira Code · Poimandres パレット |
+| ホスティング | Xserver レンタルサーバー |
+| デプロイ | rsync over SSH |
 
-→ Full list: [ykts.net/works](https://ykts.net/works/)
+---
 
-## Architecture (Trading System)
+## ローカル確認
 
-```text
-Hetzner VPS (NixOS · systemd timer)
-  └─ status_metrics_push.py  ─→  Cloudflare KV
-                                       │
-                              Astro (Cloudflare Pages)
-                                  ├─ /api/status  (Hono)
-                                  └─ /live-demo   (SVG charts · client-side DOM)
+NixOS 環境では ZSH 関数でサブコマンドを管理しています。  
+関数の実装は [`zsh/functions.zsh`](./zsh/functions.zsh) を参照してください。
+
+```zsh
+# 開発サーバー起動
+astro-xserver dev
+
+# ビルド確認
+astro-xserver build
+astro-xserver preview
+
+# 依存インストール
+astro-xserver install
+
+# キャッシュ・成果物を一括削除
+astro-xserver clean
 ```
 
-Sensitive values (instrument names, lot size, P&L) are excluded. A 5-minute delay is applied.
+他の環境では通常の npm コマンドで動きます。
 
-## Tech Stack
-
-| Layer | Tech |
-|---|---|
-| Framework | Astro + Cloudflare Pages adapter (static output + Edge Functions for API routes) |
-| Styling | Tailwind CSS · Fira Code · Poimandres palette |
-| API | Hono (catch-all route) |
-| KV store | Cloudflare KV |
-| Charts | SVG via `document.createElementNS` — zero runtime deps |
-| Search | Pagefind (full-text, static) |
-| Backend | NixOS · systemd timers · Python 3 |
-
-## Setup
-
-### Environment Variables
-
-| Variable | Description |
-|---|---|
-| `CONTACT_DISCORD_WEBHOOK_URL` | Discord webhook for contact form |
-| `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret key |
-
-### Cloudflare
-
-1. Create a project on Cloudflare Pages
-2. Create a KV namespace and bind it as `SESSION`
-3. Add the KV binding to your Wrangler config
-4. Add the environment variables above via the Pages dashboard
-
-## Development
 ```bash
 npm install
 npm run dev
+npm run build
+npm run preview
 ```
 
-## License & Credits
+---
 
-MIT — Initial foundation: [Astro Cactus](https://github.com/chrismwilliams/astro-theme-cactus) by Chris Williams, heavily reworked.
+## デプロイ
+
+`deploy-xserver` を実行すると以下を順に処理します。
+
+1. `npm run build` — `dist/` を生成
+2. `rsync` — SSH 経由で Xserver の `public_html/` へ転送
+3. `git push` — リポジトリを更新
+
+```zsh
+deploy-xserver
+# コミットメッセージを指定する場合
+deploy-xserver "feat: update works section"
+```
+
+SSH の事前設定として、Xserver サーバーパネルの SSH 設定画面で公開鍵を登録しておく必要があります。
+
+---
+
+## ライセンス
+
+MIT
