@@ -21,7 +21,11 @@ export const works: Work[] = [
       "Sony RC-S300 と Raspberry Pi 2 で作った勤怠管理。カードをかざすだけで記録が完結し、Google スプレッドシートへ自動同期。マンション管理事業者に導入・運用中。",
     featuredDescription:
       "Sony RC-S300 と Raspberry Pi 2 で作った勤怠管理。カードをかざすだけで記録が完結。給与自動計算システム。",
-    links: [],
+    links: [
+      { label: "Demo →", href: "/nfc-attendance/" },
+      { label: "制作記事", href: "/posts/nfc-attendance-system/" },
+      { label: "GitHub", href: "https://github.com/yktsnet/nfc-attendance-kit", external: true },
+    ],
     featured: true,
   },
   {
@@ -34,7 +38,11 @@ export const works: Work[] = [
       "Pico W のリードスイッチで給餌棚の開閉を検知し、FastAPI + PostgreSQL で記録。LINE で家族に定時通知・照会・設定変更ができる家庭向け IoT システム。",
     featuredDescription:
       "Pico W のリードスイッチで給餌棚の開閉を検知。LINE で家族に定時通知・照会ができる IoT システム。",
-    links: [],
+    links: [
+      { label: "Demo →", href: "/cat-feed-tracker/" },
+      { label: "制作記事", href: "/posts/cat-feed-tracker/" },
+      { label: "GitHub", href: "https://github.com/yktsnet/cat-feed-tracker", external: true },
+    ],
     featured: true,
   },
   {
@@ -42,11 +50,14 @@ export const works: Work[] = [
     tag: "運用基盤 · ライブ",
     color: "#89ddff",
     icon: "chart-candlestick",
+    postSlug: "live-demo",
     description:
       "自動売買パイプラインのログを Cloudflare KV 経由で集約し、Astro でリアルタイムに表示。稼働中のバックエンドを5分ディレイで外部に公開するライブモニタリング基盤。",
     featuredDescription:
       "自動売買パイプラインのログを Cloudflare KV 経由で集約。稼働中バックエンドをリアルタイムで外部公開。",
-    links: [],
+    links: [
+      { label: "制作記事", href: "/posts/live-demo/" },
+    ],
     featured: true,
   },
   {

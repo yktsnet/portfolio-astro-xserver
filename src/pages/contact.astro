@@ -3,50 +3,136 @@ import MainLayout from '../layouts/MainLayout.astro';
 ---
 
 <MainLayout title="Contact" description="お問い合わせ・各種リンク">
-  <h1 class="mb-6 text-xl font-semibold text-zinc-900 dark:text-poi-focus">Contact</h1>
-
-  <p class="font-sans text-sm leading-7 text-zinc-600 dark:text-poi-muted">
-    現在このページは Xserver 向けの静的版です。
-    ご相談・ご依頼はメールでご連絡ください。
+  <h1 class="mb-2 text-xl font-semibold text-zinc-900 dark:text-poi-focus">Contact</h1>
+  <p class="mb-10 font-sans text-sm leading-7 text-zinc-500 dark:text-poi-muted">
+    ご相談・ご依頼はこちらからどうぞ。
   </p>
 
-  <div class="mt-8 rounded-xl border border-zinc-200 p-5 dark:border-poi-panel">
-    <p class="font-sans text-sm text-zinc-500 dark:text-poi-muted">Email</p>
-    <a
-      href="mailto:your-address@example.com"
-      class="mt-2 inline-block text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900 dark:text-poi-focus dark:decoration-poi-muted dark:hover:decoration-poi-focus"
+  <!-- Form -->
+  <form
+    id="contact-form"
+    class="space-y-5 max-w-lg"
+    novalidate
+  >
+    <div>
+      <label for="name" class="block font-mono text-xs text-zinc-500 dark:text-poi-muted mb-1.5">
+        お名前 <span class="text-red-400">*</span>
+      </label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        required
+        placeholder="山田 太郎"
+        class="w-full rounded-lg border border-zinc-300 dark:border-poi-border bg-white dark:bg-poi-panel px-4 py-2.5 font-mono text-sm text-zinc-900 dark:text-poi-focus placeholder-zinc-400 dark:placeholder-poi-muted/50 outline-none focus:border-light-accent dark:focus:border-poi-accent transition-colors"
+      />
+    </div>
+
+    <div>
+      <label for="email" class="block font-mono text-xs text-zinc-500 dark:text-poi-muted mb-1.5">
+        メールアドレス <span class="text-red-400">*</span>
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        placeholder="your@email.com"
+        class="w-full rounded-lg border border-zinc-300 dark:border-poi-border bg-white dark:bg-poi-panel px-4 py-2.5 font-mono text-sm text-zinc-900 dark:text-poi-focus placeholder-zinc-400 dark:placeholder-poi-muted/50 outline-none focus:border-light-accent dark:focus:border-poi-accent transition-colors"
+      />
+    </div>
+
+    <div>
+      <label for="message" class="block font-mono text-xs text-zinc-500 dark:text-poi-muted mb-1.5">
+        メッセージ <span class="text-red-400">*</span>
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        required
+        rows="5"
+        placeholder="ご依頼内容・ご質問をお書きください"
+        class="w-full rounded-lg border border-zinc-300 dark:border-poi-border bg-white dark:bg-poi-panel px-4 py-2.5 font-mono text-sm text-zinc-900 dark:text-poi-focus placeholder-zinc-400 dark:placeholder-poi-muted/50 outline-none focus:border-light-accent dark:focus:border-poi-accent transition-colors resize-none"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      id="submit-btn"
+      class="inline-flex items-center gap-2 rounded-lg bg-light-accent dark:bg-poi-accent px-6 py-2.5 font-mono text-sm font-semibold text-white dark:text-poi-base transition-opacity hover:opacity-80 active:opacity-60"
     >
-      your-address@example.com
-    </a>
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
+      </svg>
+      送信する
+    </button>
+  </form>
+
+  <!-- Success message (hidden by default) -->
+  <div
+    id="success-msg"
+    class="hidden mt-6 max-w-lg rounded-xl border border-zinc-200 dark:border-poi-border bg-white dark:bg-poi-panel px-6 py-5"
+  >
+    <p class="font-mono text-sm text-zinc-900 dark:text-poi-focus font-semibold mb-1">送信しました ✓</p>
+    <p class="font-sans text-sm text-zinc-500 dark:text-poi-muted leading-6">
+      メールクライアントが開きます。送信が完了するまでしばらくお待ちください。
+    </p>
   </div>
 
-  <div class="mt-8 flex items-center gap-5">
+  <!-- Links -->
+  <div class="mt-14 flex items-center gap-5 font-mono text-xs text-zinc-400 dark:text-poi-muted">
     <a
       href="https://github.com/yktsnet"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="GitHub"
-      class="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-poi-focus"
+      class="transition-colors hover:text-zinc-700 dark:hover:text-poi-focus"
     >
       GitHub
     </a>
+    <span class="text-zinc-200 dark:text-poi-border select-none">·</span>
     <a
       href="https://x.com/yktsnet"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="X"
-      class="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-poi-focus"
+      class="transition-colors hover:text-zinc-700 dark:hover:text-poi-focus"
     >
       X
     </a>
+    <span class="text-zinc-200 dark:text-poi-border select-none">·</span>
     <a
       href="https://www.instagram.com/ykatsu24/"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Instagram"
-      class="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-poi-focus"
+      class="transition-colors hover:text-zinc-700 dark:hover:text-poi-focus"
     >
       Instagram
     </a>
   </div>
 </MainLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successMsg = document.getElementById('success-msg')!;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name    = (document.getElementById('name')    as HTMLInputElement).value.trim();
+    const email   = (document.getElementById('email')   as HTMLInputElement).value.trim();
+    const message = (document.getElementById('message') as HTMLTextAreaElement).value.trim();
+
+    if (!name || !email || !message) return;
+
+    const subject = encodeURIComponent(`[ykts.net] ${name} よりお問い合わせ`);
+    const body    = encodeURIComponent(
+      `お名前: ${name}\nメール: ${email}\n\n${message}`
+    );
+
+    window.location.href = `mailto:your-address@example.com?subject=${subject}&body=${body}`;
+
+    form.style.opacity = '0.4';
+    form.style.pointerEvents = 'none';
+    successMsg.classList.remove('hidden');
+  });
+</script>
