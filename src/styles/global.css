@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .cactus-link {
+    @apply underline underline-offset-2 decoration-zinc-400 dark:decoration-poi-border transition-all hover:decoration-light-accent dark:hover:decoration-poi-accent hover:decoration-2;
+  }
+}

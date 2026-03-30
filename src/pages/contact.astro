@@ -1,0 +1,52 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Contact" description="お問い合わせ・各種リンク">
+  <h1 class="mb-6 text-xl font-semibold text-zinc-900 dark:text-poi-focus">Contact</h1>
+
+  <p class="font-sans text-sm leading-7 text-zinc-600 dark:text-poi-muted">
+    現在このページは Xserver 向けの静的版です。
+    ご相談・ご依頼はメールでご連絡ください。
+  </p>
+
+  <div class="mt-8 rounded-xl border border-zinc-200 p-5 dark:border-poi-panel">
+    <p class="font-sans text-sm text-zinc-500 dark:text-poi-muted">Email</p>
+    <a
+      href="mailto:your-address@example.com"
+      class="mt-2 inline-block text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900 dark:text-poi-focus dark:decoration-poi-muted dark:hover:decoration-poi-focus"
+    >
+      your-address@example.com
+    </a>
+  </div>
+
+  <div class="mt-8 flex items-center gap-5">
+    <a
+      href="https://github.com/yktsnet"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub"
+      class="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-poi-focus"
+    >
+      GitHub
+    </a>
+    <a
+      href="https://x.com/yktsnet"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="X"
+      class="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-poi-focus"
+    >
+      X
+    </a>
+    <a
+      href="https://www.instagram.com/ykatsu24/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Instagram"
+      class="text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-poi-focus"
+    >
+      Instagram
+    </a>
+  </div>
+</MainLayout>
